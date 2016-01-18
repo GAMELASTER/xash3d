@@ -14,6 +14,7 @@ GNU General Public License for more details.
 */
 
 #include "common.h"
+#ifndef DEDICATED
 #include "client.h"
 #include "gl_local.h"
 #include "studio.h"
@@ -4612,3 +4613,4 @@ void R_ShutdownImages( void )
 	Q_memset( r_textures, 0, sizeof( r_textures ));
 	r_numTextures = 0;
 }
+#endif //DEDICATED

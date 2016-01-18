@@ -14,6 +14,7 @@ GNU General Public License for more details.
 */
 
 #include "common.h"
+#ifndef DEDICATED
 #include "client.h"
 #include "gl_local.h"
 #include "mod_local.h"
@@ -464,3 +465,4 @@ void R_NewMap( void )
 
 	GL_BuildLightmaps ();
 }
+#endif //DEDICATED

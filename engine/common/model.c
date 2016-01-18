@@ -12,7 +12,8 @@ but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 */
-
+#include "port.h"
+#ifndef DEDICATED
 #include "mod_local.h"
 #include "sprite.h"
 #include "mathlib.h"
@@ -3293,3 +3294,4 @@ wadlist_t *Mod_WadList( void )
 {
 	return &wadlist;
 }
+#endif //DEDICATED

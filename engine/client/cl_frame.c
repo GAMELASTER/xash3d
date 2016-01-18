@@ -14,6 +14,7 @@ GNU General Public License for more details.
 */
 
 #include "common.h"
+#ifndef DEDICATED
 #include "client.h"
 #include "net_encode.h"
 #include "entity_types.h"
@@ -1149,3 +1150,4 @@ void CL_ExtraUpdate( void )
 		clgame.dllFuncs.IN_Accumulate();
 	S_ExtraUpdate();
 }
+#endif //DEDICATED

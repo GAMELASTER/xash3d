@@ -20,7 +20,7 @@ GNU General Public License for more details.
 #include "library.h"
 #include "gl_local.h"
 #include "touch.h"
-#if defined(__ANDROID__)
+#if defined(__ANDROID__) && !defined(DEDICATED)
 
 //#include "platform/android/android-gameif.h"
 #include "SDL_system.h"
@@ -35,7 +35,7 @@ static void pfnVibrate( float life, char flags )
 {
 	// here goes platform-specific backends
 	MsgDev( D_NOTE, "Vibrate: %f %d", life, flags );
-#ifdef __ANDROID__
+#if defined (__ANDROID__) && !defined(DEDICATED)
 	Android_Vibrate(life, flags);
 #endif
 }

@@ -14,6 +14,7 @@ GNU General Public License for more details.
 */
 
 #include "common.h"
+#ifndef DEDICATED
 #include "client.h"
 #include "gl_local.h"
 #include "mod_local.h"
@@ -645,3 +646,4 @@ void R_FindMirrors( const ref_params_t *fd )
 
 	R_CheckEntitiesOnList();
 }
+#endif //DEDICATED

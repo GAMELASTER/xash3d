@@ -118,7 +118,7 @@ void Android_Vibrate( float life, char flags )
 	(*env)->CallVoidMethod(env, obj, mid, time);
 }
 
-#else
+#elif defined (ANDROID_BACKEND)
 
 #include "nanogl.h" //use NanoGL
 

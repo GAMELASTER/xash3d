@@ -14,6 +14,7 @@ GNU General Public License for more details.
 */
 
 #include "common.h"
+#ifndef DEDICATED
 #include "client.h"
 #include "gl_local.h"
 #include "mod_local.h"
@@ -23,7 +24,7 @@ GNU General Public License for more details.
 #include <SDL_syswm.h>
 #endif
 
-#ifdef __ANDROID__
+#if defined (__ANDROID__) && !defined(DEDICATED)
 #include <GL/nanogl.h>
 #endif
 
@@ -2301,3 +2302,4 @@ void GL_CheckForErrors_( const char *filename, const int fileline )
 
 	Host_Error( "GL_CheckForErrors: %s (called at %s:%i)\n", str, filename, fileline );
 }
+#endif //DEDICATED

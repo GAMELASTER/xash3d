@@ -240,14 +240,14 @@ qboolean CRC32_MapFile( dword *crcvalue, const char *filename )
 	int	version;
 
 	if( !crcvalue ) return false;
-
+#ifndef DEDICATED
 	// always calc same checksum for singleplayer
 	if( cls.state >= ca_connected && SV_Active() && CL_GetMaxClients() == 1 )
 	{
 		*crcvalue = (('H'<<24)+('S'<<16)+('A'<<8)+'X');
 		return true;
 	}
-
+#endif
 	f = FS_Open( filename, "rb", false );
 	if( !f ) return false;
 

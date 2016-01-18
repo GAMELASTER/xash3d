@@ -484,7 +484,7 @@ qboolean Cmd_GetItemsList( const char *s, char *completedname, int length )
 	search_t		*t;
 	string		matchbuf;
 	int		i, numitems;
-
+#ifndef DEDICATED
 	if( !clgame.itemspath[0] ) return false; // not in game yet
 	t = FS_Search( va( "%s/%s*.txt", clgame.itemspath, s ), true, false );
 	if( !t ) return false;
@@ -515,6 +515,7 @@ qboolean Cmd_GetItemsList( const char *s, char *completedname, int length )
 				completedname[i] = 0;
 		}
 	}
+#endif
 	return true;
 }
 
@@ -967,7 +968,7 @@ void Host_WriteConfig( void )
 {
 	kbutton_t	*mlook, *jlook;
 	file_t	*f;
-
+#ifndef DEDICATED
 	if( !clgame.hInstance ) return;
 
 	MsgDev( D_NOTE, "Host_WriteConfig()\n" );
@@ -1009,7 +1010,7 @@ void Host_WriteConfig( void )
 		FS_Close( f );
 	}
 	else MsgDev( D_ERROR, "Couldn't write keyboard.cfg.\n" );
-	
+#endif
 }
 
 /*

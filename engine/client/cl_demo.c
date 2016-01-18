@@ -14,6 +14,7 @@ GNU General Public License for more details.
 */
 
 #include "common.h"
+#ifndef DEDICATED
 #include "client.h"
 #include "net_encode.h"
 
@@ -1241,3 +1242,4 @@ void CL_Stop_f( void )
 		S_StopBackgroundTrack();
 	}
 }
+#endif //DEDICATED

@@ -14,6 +14,7 @@ GNU General Public License for more details.
 */
 
 #include "common.h"
+#ifndef DEDICATED
 #include "client.h"
 #include "keydefs.h"
 #include "protocol.h"		// get the protocol version
@@ -2290,3 +2291,4 @@ void Con_DefaultColor( int r, int g, int b )
 	b = bound( 0, b, 255 );
 	MakeRGBA( g_color_table[7], r, g, b, 255 );
 }
+#endif //DEDICATED

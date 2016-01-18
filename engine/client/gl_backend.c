@@ -15,6 +15,7 @@ GNU General Public License for more details.
 
 #include "common.h"
 #include "client.h"
+#ifndef DEDICATED
 #include "gl_local.h"
 #include "mathlib.h"
 
@@ -746,5 +747,5 @@ rebuild_page:
 	CL_DrawCenterPrint ();
 	pglFinish();
 }
-
+#endif //DEDICATED
 //=======================================================

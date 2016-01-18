@@ -14,6 +14,7 @@ GNU General Public License for more details.
 */
 
 #include "common.h"
+#ifndef DEDICATED
 #include "client.h"
 #include "gl_local.h"
 #include "entity_types.h"
@@ -223,3 +224,4 @@ qboolean R_CullSurface( msurface_t *surf, uint clipflags )
 
 	return ( clipflags && R_CullBox( info->mins, info->maxs, clipflags ));
 }
+#endif //DEDICATED

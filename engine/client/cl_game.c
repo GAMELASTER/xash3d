@@ -14,6 +14,7 @@ GNU General Public License for more details.
 */
 
 #include "common.h"
+#ifndef DEDICATED
 #include "client.h"
 #include "const.h"
 #include "triangleapi.h"
@@ -4116,3 +4117,4 @@ qboolean CL_LoadProgs( const char *name )
 
 	return true;
 }
+#endif //DEDICATED

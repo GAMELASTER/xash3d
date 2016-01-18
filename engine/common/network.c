@@ -1190,7 +1190,9 @@ void HTTP_FreeFile( httpfile_t *file, qboolean error )
 			// autoremove disabled, keep file
 			Msg( "HTTP: Cannot download %s from any server. "
 				"You may remove %s now\n", file->path, incname ); // Warn about trash file
+#ifndef DEDICATED
 		if( file->process )CL_ProcessFile( false, file->path ); // Process file, increase counter
+#endif
 	}
 	else
 	{
@@ -1198,7 +1200,9 @@ void HTTP_FreeFile( httpfile_t *file, qboolean error )
 		char name[256];
 		Q_snprintf( name, 256, "downloaded/%s", file->path );
 		FS_Rename( incname, name );
+#ifndef DEDICATED
 		if( file->process )CL_ProcessFile( true, name );
+#endif
 		else Msg ( "HTTP: Successfully downloaded %s, prosessing disabled!\n", name );
 	}
 	// Now free list node

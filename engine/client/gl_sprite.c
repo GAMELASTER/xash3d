@@ -14,6 +14,7 @@ GNU General Public License for more details.
 */
 
 #include "common.h"
+#ifndef DEDICATED
 #include "client.h"
 #include "gl_local.h"
 #include "pm_local.h"
@@ -1134,3 +1135,4 @@ void R_DrawSpriteModel( cl_entity_t *e )
 	if( RI.fogCustom || ( RI.fogEnabled && !glState.drawTrans ))
 		pglEnable( GL_FOG );
 }
+#endif

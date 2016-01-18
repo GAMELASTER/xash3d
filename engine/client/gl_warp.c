@@ -14,6 +14,7 @@ GNU General Public License for more details.
 */
 
 #include "common.h"
+#ifndef DEDICATED
 #include "client.h"
 #include "gl_local.h"
 #include "com_model.h"
@@ -732,3 +733,4 @@ void EmitSkyLayers( msurface_t *fa )
 
 	pglDisable( GL_BLEND );
 }
+#endif

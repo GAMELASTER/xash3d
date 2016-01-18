@@ -13,9 +13,8 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 */
 
-#include "port.h"
-
 #include "common.h"
+#ifndef DEDICATED
 #include "input.h"
 #include "touch.h"
 #include "client.h"
@@ -816,3 +815,4 @@ void Host_InputFrame( void )
 	IN_ActivateMouse( false );
 	IN_MouseMove();
 }
+#endif //DEDICATED

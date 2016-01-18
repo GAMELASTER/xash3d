@@ -14,6 +14,7 @@ GNU General Public License for more details.
 */
 
 #include "common.h"
+#ifndef DEDICATED
 #include "client.h"
 #include "gl_local.h"
 #include "mathlib.h"
@@ -1730,3 +1731,4 @@ qboolean R_InitRenderAPI( void )
 	// render interface is missed
 	return true;
 }
+#endif //DEDICATED

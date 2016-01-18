@@ -14,6 +14,7 @@ GNU General Public License for more details.
 */
 
 #include "common.h"
+#ifndef DEDICATED
 #include "gl_local.h"
 #include "input.h"
 #include "client.h"
@@ -1261,3 +1262,4 @@ void IN_TouchShutdown( void )
 	touch.initialized = false;
 	Mem_FreePool( &touch.mempool );
 }
+#endif

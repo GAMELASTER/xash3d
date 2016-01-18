@@ -14,6 +14,7 @@ GNU General Public License for more details.
 */
 
 #include "common.h"
+#ifndef DEDICATED
 #include "client.h"
 #include "mathlib.h"
 #include "const.h"
@@ -3747,3 +3748,4 @@ void CL_InitStudioAPI( void )
 	// just restore pointer to builtin function
 	pStudioDraw = &gStudioDraw;
 }
+#endif //DEDICATED

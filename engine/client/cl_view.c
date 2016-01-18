@@ -14,6 +14,7 @@ GNU General Public License for more details.
 */
 
 #include "common.h"
+#ifndef DEFICATED
 #include "client.h"
 #include "const.h"
 #include "entity_types.h"
@@ -423,3 +424,4 @@ void V_PostRender( void )
 	SCR_MakeScreenShot();
 	R_EndFrame();
 }
+#endif //DEDICATED

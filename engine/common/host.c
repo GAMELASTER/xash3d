@@ -145,6 +145,7 @@ void Host_EndGame( const char *message, ... )
 		Sys_Break( "Host_EndGame: %s\n", string ); // dedicated servers exit
 
 	SV_Shutdown( false );
+#ifndef DEDICATED
 	CL_Disconnect();
 
 	// recreate world if needs
@@ -154,6 +155,7 @@ void Host_EndGame( const char *message, ... )
 	Mod_ClearAll( true );
 
 	Host_AbortCurrentFrame ();
+#endif //DEDICATED
 }
 
 /*

@@ -864,6 +864,16 @@ void CL_RunUsercmd(local_state_t * from, local_state_t * to, usercmd_t * u, qboo
 	*pfElapsed += cmd.msec / 1000.0;
 }
 
+void CL_PostRunCmd( usercmd_t *ucmd, int random_seed )
+{
+	local_state_t	from, to;
+
+	from = to = cl.frame.local;
+	from.playerstate = cl.frame.playerstate[cl.playernum];
+	to.playerstate = cl.frame.playerstate[cl.playernum];
+	clgame.dllFuncs.pfnPostRunCmd( &from, &to, ucmd, true, cl.time, random_seed );
+}
+
 /*
 =================
 CL_PredictMovement

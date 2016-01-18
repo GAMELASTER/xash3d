@@ -541,7 +541,7 @@ enum
 	GL_EXTCOUNT,		// must be last
 };
 
-#ifndef __ANDROID__
+#if !defined( ANDROID ) || defined ( DEDICATED )
 enum
 {
 	GL_KEEP_UNIT = -1,

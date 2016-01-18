@@ -14,6 +14,7 @@ GNU General Public License for more details.
 */
 
 #include "common.h"
+#ifndef DEDICATED
 #include "input.h"
 #include "client.h"
 #ifdef XASH_SDL
@@ -848,3 +849,4 @@ void CL_CharEvent( int key )
 		UI_CharEvent( key );
 	}
 }
+#endif //DEDICATED

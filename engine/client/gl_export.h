@@ -16,7 +16,7 @@ GNU General Public License for more details.
 #ifndef GL_EXPORT_H
 #define GL_EXPORT_H
 
-#ifdef __ANDROID__
+#if defined (__ANDROID__) && !defined (DEDICATED)
 
 #include "platform/android/gl_mangle.h"
 #undef pglMultiTexCoord2f

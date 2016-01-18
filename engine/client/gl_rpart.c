@@ -14,6 +14,7 @@ GNU General Public License for more details.
 */
 
 #include "common.h"
+#ifndef DEDICATED
 #include "client.h"
 #include "gl_local.h"
 #include "r_efx.h"
@@ -1732,3 +1733,4 @@ void CL_ReadPointFile_f( void )
 	if( count ) Msg( "%i points read\n", count );
 	else Msg( "map %s has no leaks!\n", clgame.mapname );
 }
+#endif //DEDICATED

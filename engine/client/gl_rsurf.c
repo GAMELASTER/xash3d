@@ -14,6 +14,7 @@ GNU General Public License for more details.
 */
 
 #include "common.h"
+#ifndef DEDICATED
 #include "client.h"
 #include "gl_local.h"
 #include "mod_local.h"
@@ -2193,3 +2194,4 @@ void GL_BuildLightmaps( void )
 	if( !gl_keeptjunctions->integer )
 		MsgDev( D_INFO, "Eliminated %i vertices\n", nColinElim );
 }
+#endif //DEDICATED
