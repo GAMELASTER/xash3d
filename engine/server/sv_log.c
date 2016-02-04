@@ -103,8 +103,8 @@ void Log_Open(void)
 	time_t ltime;
 	struct tm *today;
 
-	char file_base[MAX_PATH];
-	char test_file[MAX_PATH];
+	char file_base[MAX_SYSPATH];
+	char test_file[MAX_SYSPATH];
 
 	int i;
 	file_t *fp;
@@ -159,7 +159,7 @@ void SV_SetLogAddress_f (void)
 {
 	const char *s;
 	int numeric_port;
-	char addr[MAX_PATH];
+	char addr[MAX_SYSPATH];
 	netadr_t adr;
 
 	if (Cmd_Argc () != 3)
