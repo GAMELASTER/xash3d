@@ -40,6 +40,7 @@ sysinfo_t		SI;
 
 convar_t	*host_serverstate;
 convar_t	*vrmode;
+convar_t	*vrdist;
 convar_t	*host_gameloaded;
 convar_t	*host_clientloaded;
 convar_t	*host_limitlocal;
@@ -1003,6 +1004,7 @@ int EXPORT Host_Main( int argc, const char **argv, const char *progname, int bCh
 		Cmd_AddCommand ( "net_error", Net_Error_f, "send network bad message from random place");
 	}
 	vrmode = Cvar_Get( "vrmode", "0", CVAR_ARCHIVE , "Virtual Reality mode" );
+	vrdist = Cvar_Get( "vrdist", "0.4", CVAR_ARCHIVE , "Virtual Reality frame mod" );
 	host_cheats = Cvar_Get( "sv_cheats", "0", CVAR_LATCH, "allow usage of cheat commands and variables" );
 	host_maxfps = Cvar_Get( "fps_max", "72", CVAR_ARCHIVE, "host fps upper limit" );
 	host_sleeptime = Cvar_Get( "sleeptime", "1", CVAR_ARCHIVE, "higher value means lower accuracy" );

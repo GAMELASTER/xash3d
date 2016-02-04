@@ -27,7 +27,9 @@ GNU General Public License for more details.
 #ifdef _WIN32
 #include "windows.h"
 #endif
-
+#ifdef __ANDROID__
+#include "../platform/android/android-main.h"
+#endif
 Xash_Cursor*	in_mousecursor;
 qboolean	in_mouseactive;				// false when not focus app
 qboolean	in_mouseinitialized;
@@ -558,10 +560,23 @@ void IN_SDL_JoyOpen( void )
 
 void IN_SDL_JoyMove( float frametime, float *forward, float *side, float *pitch, float *yaw )
 {
+	static double	nexttime = 0, lasttime = 0;
+	static float cl_rtime;
+	double		newtime;
+
 	int i;
 	if( joy_enable->modified )
 		IN_SDL_JoyOpen();
 	if(!joydata.joy) return;
+	//Get client frametime - cl_rtime
+	newtime = Sys_DoubleTime();
+	if (newtime >= nexttime)
+	{
+		cl_rtime = (newtime - lasttime);
+		lasttime = newtime;
+		nexttime = max(nexttime + 1, lasttime - 1);
+	}
+
 	// Extend cvar with zeroes
 	if(joy_binding->modified)
 	{
@@ -578,8 +593,8 @@ void IN_SDL_JoyMove( float frametime, float *forward, float *side, float *pitch,
 		{
 			case 'f': *forward -= joy_forward->value/32768.0 * value;break; //must be form -1.0 to 1.0
 			case 's': *side += joy_side->value/32768.0 * value;break;
-			case 'p': *pitch += joy_pitch->value/32768.0 * (float)value * frametime;break; // abs axis rotate is frametime related
-			case 'y': *yaw -= joy_yaw->value/32768.0 * (float)value * frametime;break;
+			case 'p': *pitch += joy_pitch->value/32768.0 * (float)value*(cl_rtime/100) ;break; // abs axis rotate is frametime related
+			case 'y': *yaw -= joy_yaw->value/32768.0 * (float)value *(cl_rtime/100);break;
 			default:break;
 		}
 	}
@@ -742,7 +757,7 @@ void IN_EngineAppendMove( float frametime, usercmd_t *cmd, qboolean active )
 	{
 		float sensitivity = ((float)cl.refdef.fov_x / (float)90.0f);
 #ifdef XASH_SDL
-		IN_SDL_JoyMove( frametime, &forward, &side, &dpitch, &dyaw );
+		IN_SDL_JoyMove( 0, &forward, &side, &dpitch, &dyaw );
 		if( m_enginemouse->integer )
 		{
 			int mouse_x, mouse_y;
@@ -785,7 +800,7 @@ void Host_InputFrame( void )
 		int dx, dy;
 
 #ifdef XASH_SDL
-		IN_SDL_JoyMove( cl.time - cl.oldtime, &forward, &side, &pitch, &yaw );
+		IN_SDL_JoyMove(0, &forward, &side, &pitch, &yaw );
 #ifndef __ANDROID__
 		if( in_mouseinitialized )
 		{
@@ -796,13 +811,14 @@ void Host_InputFrame( void )
 	
 		
 #endif
-#ifdef ANDROID_GYRO_TRACKING // disable before java part is done
+#ifdef __ANDROID__ 
 		if( getenv("XASH3D_ANDROID_GYRO" ) )
 		{
-			vec3_t accelValues;
-			Android_JNI_GetAccelerometerValues(accelValues);
-			if( accelValues[2] != 0 )
-				VectorCopy( accelValues, cl.refdef.cl_viewangles );
+			vec3_t TrackValues;
+			GetTrackData(TrackValues);
+			if( TrackValues[2] != 0 )
+				VectorCopy( TrackValues, cl.refdef.cl_viewangles );
+
 		}
 #endif
 #endif
