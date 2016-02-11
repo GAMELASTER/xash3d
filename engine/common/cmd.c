@@ -893,19 +893,27 @@ void Cmd_ExecuteString( const char *text, cmd_source_t src )
 	{
 		while( *text )
 		{
-			if( *text == '$' )
+			// check for escape
+			if( ( *text == '\\' || *text == '$') && ( *(text + 1) == '$' ))
+			{
+				text ++;
+			}
+			else if( *text == '$' )
 			{
 				char token[MAX_CMD_LINE], *ptoken = token;
 
 				// check for correct cvar name
 				text++;
 				while( ( *text >= '0' && *text <= '9' ) ||
-					   ( *text >= 'A' && *text <= 'z') || *text == '_' )
+					   ( *text >= 'A' && *text <= 'Z' ) ||
+					   ( *text >= 'a' && *text <= 'z' )
+					   || (*text == '_' ) )
 					*ptoken++ = *text++;
 				*ptoken = 0;
+
 				len += Q_strncpy( pcmd, Cvar_VariableString( token ), MAX_CMD_LINE - len );
 				pcmd = command + len;
-				//*pcmd++ = ' ';
+
 				if( !*text )
 					break;
 			}
