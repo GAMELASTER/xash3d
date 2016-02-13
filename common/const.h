@@ -730,8 +730,7 @@ enum
 typedef int		func_t;
 typedef int		string_t;
 
-typedef unsigned char	byte;
-typedef unsigned short	word;
+typedef unsigned short       word;
 
 #undef true
 #undef false

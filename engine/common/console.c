@@ -1937,7 +1937,6 @@ void Con_DrawSolidConsole( float frac, qboolean fill )
 		}
 		pglColor4ub( 255, 255, 255, 255 );
 	}
-	else y = 0;
 
 	if( !con.curFont ) return; // nothing to draw
 
