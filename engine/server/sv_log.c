@@ -199,6 +199,7 @@ void SV_SetLogAddress_f (void)
 
 void SV_ServerLog_f(void)
 {
+	const char *s = Cmd_Argv(1);
 	if (Cmd_Argc() != 2)
 	{
 		Con_Printf("usage:  log < on | off >\n");
@@ -211,7 +212,6 @@ void SV_ServerLog_f(void)
 
 		return;
 	}
-	const char *s = Cmd_Argv(1);
 
 	if (Q_stricmp(s,"off"))
 	{

@@ -710,8 +710,6 @@ print into window console
 */
 void Sys_Print( const char *pMsg )
 {
-	if( host.type == HOST_NORMAL )
-		Con_Print( pMsg );
 #ifdef _WIN32
 	const char      *msg;
         char            buffer[32768];
@@ -772,6 +770,8 @@ void Sys_Print( const char *pMsg )
 #else
 	Sys_PrintLog( pMsg );
 #endif
+	if( host.type == HOST_NORMAL )
+		Con_Print( pMsg );
 	if( host.rd.target )
 	{
 		if(( Q_strlen( pMsg ) + Q_strlen( host.rd.buffer )) > ( host.rd.buffersize - 1 ))

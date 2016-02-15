@@ -32,8 +32,8 @@ OBJS_CPP = $(SRCS_CPP:.cpp=.o)
 SRCS = $(wildcard server/*.c) $(wildcard client/*.c) $(wildcard client/vgui/*.c) $(wildcard common/*.c) $(wildcard common/imagelib/*.c) $(wildcard common/soundlib/*.c) $(wildcard common/soundlib/libmpg/*.c) $(wildcard ./common/sdl/*.c)
 OBJS = $(SRCS:.c=.o)
 
-xash_bin.exe: $(OBJS) $(OBJS_CPP)
-	$(CC) -o xash_bin.exe $(LDFLAGS) $(OBJS) $(OBJS_CPP) $(LIBS)
+xash_mingw.exe: $(OBJS) $(OBJS_CPP)
+	$(CC) -o xash_mingw.exe $(LDFLAGS) $(OBJS) $(OBJS_CPP) $(LIBS)
 
 .PHONY: depend clean list
 RM = \Program Files\Git\usr\bin\rm -f
