@@ -466,7 +466,7 @@ void SV_TouchLinks( edict_t *ent, areanode_t *node )
 	for( l = node->trigger_edicts.next; l != &node->trigger_edicts; l = next )
 	{
 		next = l->next;
-		touch = EDICT_FROM_AREA( l );
+		touch = (edict_t *)((byte *)l - ADDRESS_OF_AREA);
 
 		if( svgame.physFuncs.SV_TriggerTouch != NULL )
 		{
@@ -595,7 +595,7 @@ qboolean SV_HeadnodeVisible( mnode_t *node, byte *visbits, int *lastleaf )
 	{
 		leafnum = ((mleaf_t *)node - sv.worldmodel->leafs) - 1;
 
-		if(!( visbits[leafnum >> 3] & (1<<( leafnum & 7 ))))
+		if(!( visbits[leafnum >> 3] & (1U << ( leafnum & 7 ))))
 			return false;
 
 		if( lastleaf )
@@ -694,14 +694,14 @@ void SV_WaterLinks( const vec3_t origin, int *pCont, areanode_t *node )
 	link_t	*l, *next;
 	edict_t	*touch;
 	hull_t	*hull;
-	vec3_t	test, offset;
+	vec3_t	test, offset = {0, 0, 0};
 	model_t	*mod;
 
 	// get water edicts
 	for( l = node->water_edicts.next; l != &node->water_edicts; l = next )
 	{
 		next = l->next;
-		touch = EDICT_FROM_AREA( l );
+		touch = (edict_t *)((byte *)l - ADDRESS_OF_AREA);
 
 		if( touch->v.solid != SOLID_NOT ) // disabled ?
 			continue;
@@ -1136,7 +1136,7 @@ static void SV_ClipToLinks( areanode_t *node, moveclip_t *clip )
 	{
 		next = l->next;
 
-		touch = EDICT_FROM_AREA( l );
+		touch = (edict_t *)((byte *)l - ADDRESS_OF_AREA);
 
 		if( touch->v.groupinfo != 0 && SV_IsValidEdict( clip->passedict ) && clip->passedict->v.groupinfo != 0 )
 		{
@@ -1248,7 +1248,7 @@ void SV_ClipToWorldBrush( areanode_t *node, moveclip_t *clip )
 	{
 		next = l->next;
 
-		touch = EDICT_FROM_AREA( l );
+		touch = (edict_t *)((byte *)l - ADDRESS_OF_AREA);
 
 		if( touch->v.solid != SOLID_BSP || touch == clip->passedict || !( touch->v.flags & FL_WORLDBRUSH ))
 			continue;
