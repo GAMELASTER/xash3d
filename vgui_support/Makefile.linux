@@ -4,7 +4,7 @@ CFLAGS ?= -O1
 TOPDIR = $(PWD)/..
 XASHXT ?= $(TOPDIR)/../xashXT
 HLSDK ?= $(TOPDIR)/../halflife
-INCLUDES = -I/usr/include/SDL2 -I../common -I../engine -I../engine/common -I../engine/client -I../engine/client/vgui -I../pm_shared -I$(XASHXT)/common
+INCLUDES = -I../common -I../engine -I../engine/common -I../engine/client -I../engine/client/vgui -I../pm_shared
 INCLUDES += -I$(HLSDK)/utils/vgui/include/
 DEFINES = -DXASH_VGUI
 %.o : %.cpp
