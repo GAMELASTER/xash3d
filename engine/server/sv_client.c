@@ -2173,7 +2173,7 @@ void SV_EntList_f( sv_client_t *cl )
 edict_t *SV_EntFindSingle( sv_client_t *cl )
 {
 	edict_t	*ent = NULL;
-	int	i = 0;
+	int i = 0;
 
 	if( Q_isdigit( Cmd_Argv( 1 ) ) )
 	{
@@ -2312,6 +2312,7 @@ void SV_EntSendVars( sv_client_t *cl, edict_t *ent )
 void SV_EntGetVars_f( sv_client_t *cl )
 {
 	edict_t *ent = NULL;
+
 	if( Cmd_Argc() != 2 )
 	{
 		SV_ClientPrintf( cl, PRINT_LOW, "Use ent_getvars <index|name|inst>\n" );
